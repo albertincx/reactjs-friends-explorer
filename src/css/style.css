@@ -1,0 +1,208 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #555;
+}
+
+@font-face {
+    font-family: 'Proxima Nova Regular';
+    src: url(/fonts/ProximaNova-Regular.eot);
+    src: url(/fonts/ProximaNova-Regular.eot?#iefix) format('embedded-opentype'), url(/fonts/ProximaNova-Regular.woff) format('woff'), url(/fonts/ProximaNova-Regular.ttf) format('truetype');
+    font-style: normal;
+    font-weight: 400
+}
+
+body {
+    font-family: 'Proxima Nova Regular', 'Helvetica Neue', sans-serif;
+    word-wrap: break-word;
+    color: #bbb;
+    background-color: #fff;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    font-size: 1rem;
+    background-clip: padding-box;
+    border: 1px solid #909090;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    color: black;
+
+}
+
+input[name=text], input[name=search] {
+    font-size: 1.4rem;
+    padding: 8px 12px;
+    border: 1px solid #000000;
+}
+
+input[type=number] {
+    width: 53px;
+}
+
+.age input, .company input {
+    padding: 4px 10px;
+    line-height: 1.4rem;
+}
+
+.company input {
+    max-width: 200px !important;
+}
+
+.age input {
+    max-width: 60px !important;
+}
+
+.age label, .company label {
+    margin: 0 10px;
+    line-height: 2rem;
+}
+
+label {
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+body {
+    font-size: 1.23rem;
+    color: #909090;
+}
+
+#app {
+    padding: 2.5rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 999;
+}
+
+.inline {
+    display: flex;
+}
+
+.group {
+    margin-bottom: 20px;
+    width: 100%;
+    min-height: 1px;
+}
+
+.group.inline > div {
+    flex: 0 0 33.33333%;
+    max-width: 33.333333%;
+    margin-top: 10px;
+    line-height: 2rem;
+}
+
+.col-2 > div, .col-2 > label, .col-2 > input {
+    flex: 0 0 49%;
+    max-width: 49.9999%;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li:after {
+    content: '/';
+    margin-left: 6px;
+    margin-right: 7px;
+    color: #909090;
+}
+
+ul li:last-child:after {
+    content: ''
+}
+
+ul li {
+    white-space: nowrap;
+}
+
+ul li.active, a {
+    color: #000;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+}
+
+ul li, .person {
+    cursor: pointer;
+}
+
+.person {
+    margin-bottom: 25px;
+}
+
+.page {
+    position: relative;
+}
+
+.page .person {
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
+
+.username a {
+    padding: 3px 0;
+    display: block;
+    text-decoration: none;
+    line-height: 2rem;
+}
+
+.close {
+    padding: 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 0;
+}
+
+@media (max-width: 800px) {
+
+    .group.inline {
+        display: block;
+    }
+
+    .group.inline > div {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .inline label:first-child {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 350px) {
+    .inline {
+        display: block;
+    }
+
+    .col-2 > div {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .company input {
+        margin-left: 0;
+    }
+}
+
+.cache-hint {
+    font-size: 0.8rem;
+}
