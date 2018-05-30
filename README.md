@@ -7,6 +7,6 @@ start server:
 
 start client:
 
-   -  npm run dev 
+   -  npm run start 
 #### Demo
 http://tmid.ru/go.php?cat=reactjs2
