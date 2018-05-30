@@ -9,8 +9,7 @@ start server:
 npm run dev 
 
 start client:
-
-chan
+ 
 npm run start 
 
 
