@@ -5,7 +5,6 @@ const PersonItem = props => (
   <div className='person'>
     <div className='username'>
       <Link to={{pathname: `/person/${props.user.id}`, state: {search: {}, user: props.user}}}>{props.user.name}</Link>
-      {/*<a href={`/person/${props.user.id}`}>{props.user.name}</a>*/}
     </div>
     <div className='userinfo'>{`${props.user.gender}, ${props.user.age} y.o., works for ${props.user.company}`}</div>
     {props.user.cached ? <span className='cache-hint'>loaded from history</span> : null}

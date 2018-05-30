@@ -14,23 +14,14 @@ class PersonClass extends React.Component {
     if (!user.id || user.id !== parseInt(id)) {
       this.getUser(id)
     }
-    console.log('CREATE')
-
   }
 
   getUser (id) {
     this.props.dispatch({type: 'get_user', id})
   }
-
-  /*shouldComponentUpdate (props) {
-    console.log('shouldComponentUpdate',props)
-  }*/
   componentDidUpdate (props) {
-    console.log('UPDA')
-
     const {id} = this.props.match.params
     const {id: personId} = props.match.params
-
     if (personId && id && id !== personId) {
       this.getUser(id)
     }

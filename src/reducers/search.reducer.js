@@ -50,30 +50,15 @@ export function search (state = initialState, action) {
 
     case 'clear':
     case 'user_success': {
-
-      let stateSearch = {}
-      /**/
-      /*console.log(action.search, state.search, state.items)
-      if (state.success && action.search) {
-        state.search = action.search
-        stateSearch = action.search
-        /!*break*!/
-      }*/
-      /**/
       state.loading = true
       return state
-
     }
     case 'search':
       let stateSearch = {}
-      /**/
-      console.log(action.search, state.search, state.items)
       if (state.success && action.search) {
         state.search = action.search
         stateSearch = action.search
-        /*break*/
       }
-      /**/
       return {
         loading: true,
         search: stateSearch,

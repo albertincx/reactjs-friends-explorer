@@ -15,7 +15,6 @@ class SearchForm extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.genderClick = this.genderClick.bind(this)
     this.stat = this.stat.bind(this)
-    console.log('CREATE')
   }
 
   stat () {
@@ -63,7 +62,6 @@ class SearchForm extends React.Component {
   render () {
     let {search} = this.state
     const {history, loading} = this.props
-    console.log('loading', loading)
     if (history.action === 'POP' || loading) {
       search = this.props.search
     }
@@ -137,19 +135,11 @@ class SearchForm extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(state.search, props)
   const {search, loading} = state.search
   return {
     search,
     loading
   }
 }
-
-/*const mapDispatchToProps = (dispatch, props) => ({
-  clear: state => dispatch({type: 'clear', state}),
-  searchAction: state => dispatch({type: 'search', state}),
-  push: (hash, state) => props.history.push('?' + hash, state)
-})*/
-
-//export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchForm))
 export default withRouter(connect(mapStateToProps)(SearchForm))
+
