@@ -1,6 +1,6 @@
 # Logs
 logs
-dist
+dist/assets
 *.log
 npm-debug.log*
 
