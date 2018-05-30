@@ -1,6 +1,6 @@
 import { LOCATION_CHANGE } from 'react-router-redux'
 
-const API_HOST = 'http://tmid.ru/api/'
+const API_HOST = 'http://localhost:8000/'
 const secret = '?secrets_k=123123'
 let timeoutHandler
 

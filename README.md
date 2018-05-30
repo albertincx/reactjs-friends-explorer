@@ -10,4 +10,9 @@ npm run dev
 
 start client:
 
+chan
 npm run start 
+
+
+#### Demo
+http://tmid.ru/go.php?cat=reactjs2
