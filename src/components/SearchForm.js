@@ -35,7 +35,7 @@ class SearchForm extends React.Component {
   }
 
   componentDidMount () {
-    if (location.search) {
+    if (location.search && !this.props.history) {
       this.search(this.props.search)
     }
   }
@@ -47,7 +47,6 @@ class SearchForm extends React.Component {
       type: 'search',
       search
     })
-    // this.props.searchAction({search})
   }
 
   genderClick (type) {
@@ -62,7 +61,7 @@ class SearchForm extends React.Component {
   render () {
     let {search} = this.state
     const {history, loading} = this.props
-    if (history.action === 'POP' || loading) {
+    if (history || loading) {
       search = this.props.search
     }
     return (
@@ -134,12 +133,14 @@ class SearchForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  const {search, loading} = state.search
+const mapStateToProps = (state) => {
+  const {search, loading, history} = state.search
   return {
     search,
-    loading
+    loading,
+    history
   }
 }
+
 export default withRouter(connect(mapStateToProps)(SearchForm))
 
