@@ -77,18 +77,6 @@ export const backendMiddleware = (history) => {
 
         break
       }
-      case 'clear' :
-        if (action.search) {
-          Object.keys(action.search).map(function (k) {
-            delete action.search[k]
-          })
-        }
-        dispatch({
-          type: 'clear_success',
-          items: [],
-          search: action.search
-        })
-        break
 
       default:
         break

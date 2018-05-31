@@ -39,10 +39,6 @@ export function search (state = initialState, action) {
       }
     }
 
-    case 'clear':
-    case 'user_success': {
-      return state
-    }
     case 'search':
       let stateSearch = {}
       if (state.success && action.search) {
@@ -54,23 +50,11 @@ export function search (state = initialState, action) {
         skip: action.search ? action.search.skip : '',
         items: []
       }
-    case 'user_success1': {
-      state.search = {}
-      break
-    }
-    case 'clear_success':
     case 'search_success':
       return {
         success: true,
         ...action
       }
-    case 'restore_history': {
-      return {
-        success: true,
-        items: action.items ? action.items : state.items,
-        search: action.search ? action.search : state.search
-      }
-    }
 
     default:
       break

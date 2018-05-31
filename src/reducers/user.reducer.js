@@ -25,7 +25,6 @@ export function user (state = initialState, action) {
 
       break
     }
-    case 'restore_history':
     case 'user_success': {
       state = {
         success: true,

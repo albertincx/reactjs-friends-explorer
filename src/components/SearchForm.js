@@ -14,12 +14,6 @@ class SearchForm extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.genderClick = this.genderClick.bind(this)
-    this.stat = this.stat.bind(this)
-  }
-
-  stat () {
-    const {search} = this.props
-    this.props.clear({search})
   }
 
   handleChange (e) {
@@ -98,15 +92,17 @@ class SearchForm extends React.Component {
             </div>
             <div className='age'>
               <div className='inline'>
-                <label htmlFor="" onClick={this.stat.bind(null)}>age from</label>
+                <label htmlFor="age_from">age from</label>
                 <input
+                  id="age_from"
                   type="search"
                   value={search.age_from ? search.age_from : ''}
                   onChange={this.handleChange}
                   name='age_from'
                 />
-                <label htmlFor="">to</label>
+                <label htmlFor="age_to">to</label>
                 <input
+                  id="age_to"
                   type="search"
                   value={search.age_to ? search.age_to : ''}
                   onChange={this.handleChange}
@@ -116,8 +112,9 @@ class SearchForm extends React.Component {
             </div>
             <div className='company'>
               <div className='inline'>
-                <label htmlFor="">work for</label>
+                <label htmlFor="company">work for</label>
                 <input
+                  id="company"
                   type="search"
                   value={search.company ? search.company : ''}
                   onChange={this.handleChange}
