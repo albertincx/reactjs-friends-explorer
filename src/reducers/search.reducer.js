@@ -1,9 +1,10 @@
 import { LOCATION_CHANGE } from 'react-router-redux'
 
 const initialState = {
-  search: {}, items: []
+  search: {}, items: [], initial: true /*reload state on refresh*/
 }
 
+/* force set state.search from URL */
 if (location.search) {
   let search = location.search.substring(1)
   try {
@@ -18,8 +19,12 @@ export function search (state = initialState, action) {
 
     case LOCATION_CHANGE: {
 
-      let historyItems = [], historySearch = {}, historyUser = {}
-      if (action.payload.state) {
+      let historyItems = [],
+        historySearch = state.initial ? state.search : {},
+        historyUser = {},
+        history = action.payload.state && !state.initial
+
+      if (history) {
         const {
           items,
           search,
@@ -31,7 +36,7 @@ export function search (state = initialState, action) {
       }
 
       return {
-        history: true,
+        history,
         success: true,
         items: historyItems,
         search: historySearch,

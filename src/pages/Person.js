@@ -19,10 +19,12 @@ class PersonClass extends React.Component {
   getUser (id) {
     this.props.dispatch({type: 'get_user', id})
   }
+
   componentDidUpdate (props) {
     const {id} = this.props.match.params
     const {id: personId} = props.match.params
-    if (personId && id && id !== personId) {
+    if (!this.props.history
+      && (personId && id && id !== personId)) {
       this.getUser(id)
     }
   }
@@ -47,9 +49,11 @@ class PersonClass extends React.Component {
 
 function mapStateToProps (state) {
   const {user, success} = state.user
+  const {history} = state.search
   return {
     user,
-    success
+    success,
+    history
   }
 }
 

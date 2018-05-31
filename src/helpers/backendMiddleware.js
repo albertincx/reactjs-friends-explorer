@@ -62,12 +62,13 @@ export const backendMiddleware = (history) => {
             if (search.skip) {
               resultState['skip'] = search.skip
             }
-            dispatch(resultState)
 
             if (hash && (
                 !location.search || hash !== location.search.substr(1)
               )) {
               history.push('?' + hash, {...historyState, ...resultState})
+            } else {
+              dispatch(resultState)
             }
           }).catch(e => {
             dispatch({type: 'search_error', message: e.toString(), hash})

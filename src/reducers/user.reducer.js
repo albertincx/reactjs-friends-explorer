@@ -2,24 +2,25 @@ import { LOCATION_CHANGE } from 'react-router-redux'
 
 const initialState = {
   success: false,
-  user: {}
+  user: {},
+  initial: true
 }
 
 export function user (state = initialState, action) {
 
   switch (action.type) {
     case LOCATION_CHANGE: {
-      if (action.payload.state) {
-        const {
-          user: historyUser,
-        } = action.payload.state
 
-        if (historyUser) {
-          return {
-            history: true,
-            success: true,
-            user: historyUser ? historyUser : {},
-          }
+      if (action.payload.state
+        && !state.initial
+        && action.payload.state.user) {
+
+        const {user} = action.payload.state
+
+        return {
+          history: true,
+          success: true,
+          user
         }
       }
 
