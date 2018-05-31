@@ -60,8 +60,8 @@ class SearchForm extends React.Component {
 
   render () {
     let {search} = this.state
-    const {history, loading} = this.props
-    if (history || loading) {
+    const {history} = this.props
+    if (history) {
       search = this.props.search
     }
     return (
@@ -134,10 +134,9 @@ class SearchForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const {search, loading, history} = state.search
+  const {search, history} = state.search
   return {
     search,
-    loading,
     history
   }
 }

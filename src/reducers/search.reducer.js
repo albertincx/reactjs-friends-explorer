@@ -41,7 +41,6 @@ export function search (state = initialState, action) {
 
     case 'clear':
     case 'user_success': {
-      state.loading = true
       return state
     }
     case 'search':
@@ -51,7 +50,6 @@ export function search (state = initialState, action) {
         stateSearch = action.search
       }
       return {
-        loading: true,
         search: stateSearch,
         skip: action.search ? action.search.skip : '',
         items: []

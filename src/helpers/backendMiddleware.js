@@ -1,38 +1,10 @@
-import { LOCATION_CHANGE } from 'react-router-redux'
-
 const API_HOST = 'http://localhost:8000/'
 const secret = '?secrets_k=123123'
 let timeoutHandler
 
-function getHistoryState (history, key) {
-  const {state} = history.location
-  return false
-  if (history.action === 'POP' && state && state.hasOwnProperty(key)) {
-    return state
-  }
-  return false
-}
-
 export const backendMiddleware = (history) => {
   return ({dispatch}) => (next) => (action) => {
     switch (action.type) {
-
-      case LOCATION_CHANGE : {
-        if (history.action === 'POP') {
-          let items = [], search = {}
-
-          if (action.payload && action.payload.state && action.payload.state.items) {
-            items = action.payload.state.items
-            search = action.payload.state.search
-            //search.success = true
-          }
-          if (items.length) {
-            //dispatch({type: 'search_success', items, search, success: true})
-          }
-        }
-
-        break
-      }
 
       case 'get_user' : {
 
@@ -46,14 +18,10 @@ export const backendMiddleware = (history) => {
               return res.json()
             }
           }).then(user => {
-          if (!location.search) {
-            //history.replace(location.pathname, {...historyState, user, id: action.id})
-          }
           dispatch({type: 'user_success', user})
         }).catch(e => {
           dispatch({type: 'user_error', message: e.toString()})
         })
-
         break
       }
 
@@ -72,40 +40,40 @@ export const backendMiddleware = (history) => {
           clearTimeout(timeoutHandler)
         }
 
-        //const time = search.skip || !hasTexts ? 10 : 300
+        const time = search.skip || !hasTexts ? 10 : 300
 
-        //timeoutHandler = setTimeout(() => {
+        timeoutHandler = setTimeout(() => {
 
-        fetch(`${API_HOST}search${secret}&${query}`, {
-          headers: {'Content-Type': 'application/json'}
-        })
-          .then(res => {
+          fetch(`${API_HOST}search${secret}&${query}`, {
+            headers: {'Content-Type': 'application/json'}
+          })
+            .then(res => {
 
-            if (res.status !== 200) {
-              // throw 'Not Found'
-            } else {
-              return res.json()
+              if (res.status !== 200) {
+                // throw 'Not Found'
+              } else {
+                return res.json()
+              }
+
+            }).then(items => {
+
+            const resultState = {type: 'search_success', items, search}
+
+            if (search.skip) {
+              resultState['skip'] = search.skip
             }
+            dispatch(resultState)
 
-          }).then(items => {
+            if (hash && (
+                !location.search || hash !== location.search.substr(1)
+              )) {
+              history.push('?' + hash, {...historyState, ...resultState})
+            }
+          }).catch(e => {
+            dispatch({type: 'search_error', message: e.toString(), hash})
+          })
 
-          const resultState = {type: 'search_success', items, search}
-
-          if (search.skip) {
-            resultState['skip'] = search.skip
-          }
-          dispatch(resultState)
-
-          if (hash && (
-              !location.search || hash !== location.search.substr(1)
-            )) {
-            history.push('?' + hash, {...historyState, ...resultState})
-          }
-        }).catch(e => {
-          dispatch({type: 'search_error', message: e.toString(), hash})
-        })
-
-        //}, time)
+        }, time)
 
         break
       }
