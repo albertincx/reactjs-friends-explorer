@@ -1,12 +1,14 @@
 # reactjs-friends-explorer
 search for a potential social network
-#### how to start
+
+## Installation
+`$ npm i`
+
+## how to start
 start server:
-
-   -  npm run dev 
-
+`npm run dev` 
 start client:
-
-   -  npm run start 
-#### Demo
+`npm run start`
+ 
+## Demo
 http://tmid.ru/go.php?cat=reactjs2

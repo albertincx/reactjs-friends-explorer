@@ -206,3 +206,13 @@ ul li, .person {
 .cache-hint {
     font-size: 0.8rem;
 }
+.scrollToTop {
+    cursor: pointer;
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 35px;
+    background: #ddd;
+    padding: 10px 20px;
+    z-index: 1000;
+}

@@ -18,33 +18,24 @@ export function search (state = initialState, action) {
 
     case LOCATION_CHANGE: {
 
-      //stateSearch = state.search
+      let historyItems = [], historySearch = {}, historyUser = {}
       if (action.payload.state) {
-        //action.payload.state.success = true
         const {
-          items: historyItems,
-          search: historySearch,
-          user: historyUser,
+          items,
+          search,
+          user,
         } = action.payload.state
-        console.log({
-          history: true,
-          success: true,
-          items: historyItems ? historyItems : [],
-          search: historySearch ? historySearch : {},
-          user: historyUser ? historyUser : {},
-        })
-        return {
-          history: true,
-          success: true,
-          items: historyItems ? historyItems : [],
-          search: historySearch ? historySearch : {},
-          user: historyUser ? historyUser : {},
-        }
+        if (items) historyItems = items
+        historySearch = search
+        historyUser = user
       }
-      if (!action.payload.search) {
 
-      } else {
-        break
+      return {
+        history: true,
+        success: true,
+        items: historyItems,
+        search: historySearch,
+        user: historyUser,
       }
     }
 

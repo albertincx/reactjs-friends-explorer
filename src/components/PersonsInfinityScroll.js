@@ -11,12 +11,19 @@ class PersonsInfinityScroll extends React.Component {
     this.scrolled = false
     this.timeoutHandler = null
     this.noScroll = !props.skip
+    this.init = true
     this.handleScroll = this.handleScroll.bind(this)
   }
 
   componentDidUpdate () {
     if (this.scrolled) {
       window.removeEventListener('scroll', this.handleScroll)
+    }
+  }
+
+  componentWillMount () {
+    if (!this.noScroll) {
+      this.init = false
     }
   }
 
@@ -41,11 +48,17 @@ class PersonsInfinityScroll extends React.Component {
   }
 
   handleScroll () {
-    if (this.noScroll) return
-
     const totalHeight = document.body.offsetHeight,
       visibleHeight = document.documentElement.clientHeight,
       scrollTop = document.documentElement.scrollTop
+
+    const scrollButton = document.getElementsByClassName('scrollToTop')[0]
+    if (scrollTop) {
+      scrollButton.style.display = 'block'
+    } else {
+      scrollButton.style.display = 'none'
+    }
+    if (this.noScroll) return
 
     let currentScroll
     if (scrollTop) {
@@ -76,9 +89,11 @@ class PersonsInfinityScroll extends React.Component {
     const {items} = this.props
     let {success} = this.props
     if (this.scrolled) success = true
-
     return (
       <div className='results'>
+        {this.init ? <div className='scrollToTop' onClick={() => {
+          document.documentElement.scrollTop = 0
+        }}>^</div> : null}
         {success && items ? items.map(
           (item, index) =>
             <PersonItem key={'person' + index} user={item}/>
