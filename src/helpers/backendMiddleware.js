@@ -26,7 +26,7 @@ export const backendMiddleware = (history) => {
       }
 
       case 'search' : {
-        const {historyState} = history.location
+
         let hasTexts = ''
         let search = action.search ? action.search : action.state.search
         const query = Object.keys(search).map(function (k) {
@@ -66,7 +66,7 @@ export const backendMiddleware = (history) => {
             if (hash && (
                 !location.search || hash !== location.search.substr(1)
               )) {
-              history.push('?' + hash, {...historyState, ...resultState})
+              history.push('?' + hash, resultState)
             } else {
               dispatch(resultState)
             }
