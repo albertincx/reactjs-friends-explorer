@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
+import _ from 'lodash'
 
 import PersonsInfinityScroll from './PersonsInfinityScroll'
 
@@ -31,6 +31,14 @@ class SearchForm extends React.Component {
   componentDidMount () {
     if (location.search && !this.props.history) {
       this.search(this.props.search)
+    }
+  }
+
+  componentDidUpdate () {
+    if (!_.isEqual(this.state.search, this.props.search)
+      && JSON.stringify(this.props.search) === '{}'
+    && !this.props.loading) {
+      this.setState({search: {}})
     }
   }
 
@@ -131,12 +139,12 @@ class SearchForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const {search, history} = state.search
+  const {search, history, loading} = state.search
   return {
     search,
-    history
+    history,
+    loading
   }
 }
 
-export default withRouter(connect(mapStateToProps)(SearchForm))
-
+export default connect(mapStateToProps)(SearchForm)

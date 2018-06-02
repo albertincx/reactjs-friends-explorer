@@ -47,11 +47,11 @@ export function search (state = initialState, action) {
     case 'search':
       let stateSearch = {}
       if (state.success && action.search) {
-        state.search = action.search
         stateSearch = action.search
       }
       return {
         search: stateSearch,
+        loading: true,
         skip: action.search ? action.search.skip : '',
         items: []
       }

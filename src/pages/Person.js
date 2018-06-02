@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { withRouter } from 'react-router'
 
 import SearchForm from '../components/SearchForm'
 import PersonItem from '../components/PersonItem'
@@ -57,4 +56,4 @@ function mapStateToProps (state) {
   }
 }
 
-export const Person = withRouter(connect(mapStateToProps)(PersonClass))
+export const Person = connect(mapStateToProps)(PersonClass)
