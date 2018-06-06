@@ -17,14 +17,13 @@ class SearchForm extends React.Component {
   }
 
   handleChange (e) {
-    const {search} = this.state
+    const {skip, ...search} = this.state
     const {name} = e.target
     let {value} = e.target
     if (/age_/.test(name) && value < 0) {
       value = 0
     }
     search[name] = value
-    delete search.skip
     this.search(search)
   }
 
