@@ -17,4 +17,4 @@ start client:
 `$ npm run start`
  
 ## Demo
-http://tmid.ru/go.php?cat=reactjs2
+http://tmid.ru/go.php?cat=friends
